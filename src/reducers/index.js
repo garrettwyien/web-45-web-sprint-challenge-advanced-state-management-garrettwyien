@@ -1,24 +1,39 @@
+import { SMURF_START, SMURF_SUCCESS, SMURF_FAIL, SMURF_ADD, SMURF_ERROR } from '../actions';
 
 export const initialState = { 
-    smurfs: [],
-    loading: false,
+    smurfs: [
+            { id:'', name:'', position:'', nickname: '', description: ''}
+    ],
+    isLoading: false,
     error: '',
  }
 
-const reducer = (state, action)=>{
+console.log(initialState);
+
+export const reducer = (state = initialState, action)=>{
+    console.log('reducer', action);
     switch(action.type) {
         case SMURF_START:
-            return { ...state, };
+            return { ...state, 
+                isLoading: true,
+                error: ''
+            };    
         case SMURF_SUCCESS:
-            return { ...state, };
+            return { ...state, 
+                isLoading: false, 
+                smurfs: action.payload
+            };
         case SMURF_FAIL:
-            return { ...state, };
+            return ({ ...state, 
+                isLoading: false, 
+                error: action.payload   
+            });
         case SMURF_ADD:
-            return { ...state, };
+            return { ...state, smurfs: [...state.smurfs, action.payload] };
         case SMURF_ERROR:
-            return { ...state, error: 'Name, position and nickname fields are required.' };
+            return { ...state, error: action.payload }
+        default: return state;
     }
-    return state;
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
