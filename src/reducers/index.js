@@ -1,8 +1,24 @@
 
-export const initialState = {
-}
+export const initialState = { 
+    smurfs: [],
+    loading: false,
+    error: '',
+ }
 
-const reducer = ()=>{
+const reducer = (state, action)=>{
+    switch(action.type) {
+        case SMURF_START:
+            return { ...state, };
+        case SMURF_SUCCESS:
+            return { ...state, };
+        case SMURF_FAIL:
+            return { ...state, };
+        case SMURF_ADD:
+            return { ...state, };
+        case SMURF_ERROR:
+            return { ...state, error: 'Name, position and nickname fields are required.' };
+    }
+    return state;
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
